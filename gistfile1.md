@@ -3,3 +3,5 @@ https://www.elevenforum.com/t/very-slow-up-slow-download-speeds-if-hyper-v-exter
     Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
     Copy-VMFile "New Virtual Machine" -SourcePath .\mun5grb.tar -DestinationPath /home/ -CreateFullPath -FileSource Host
+    
+https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/connect-to-network
