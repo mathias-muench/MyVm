@@ -6,5 +6,6 @@ https://www.elevenforum.com/t/very-slow-up-slow-download-speeds-if-hyper-v-exter
     
 https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/connect-to-network
 
-  100  nmcli connection add type ethernet con-name static ifname eth0 ipv4.method manual ipv4.addresses 172.17.64.0/20 gw4 172.17.64.1
-  130  nmcli connection modify static ipv4.dns "1.1.1.1 139.15.183.106"
+    nmcli connection add type ethernet con-name static ifname eth0 ipv4.method manual ipv4.addresses 172.17.64.0/20 gw4 172.17.64.1
+    nmcli connection modify static ipv4.dns "1.1.1.1 139.15.183.106"
+    nmcli con up static
