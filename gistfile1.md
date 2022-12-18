@@ -13,3 +13,5 @@ https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/
 [RDP on HyperV VM with Default Switch? : HyperV](https://www.reddit.com/r/HyperV/comments/g79ukb/rdp_on_hyperv_vm_with_default_switch/)
 
 [Create NAT Rules for the Hyper-V NAT Virtual Switch | Petri IT Knowledgebase](https://petri.com/create-nat-rules-hyper-v-nat-virtual-switch/)
+
+[EnhancedSessionMode/install_esm_fedora36.sh at master · secana/EnhancedSessionMode](https://github.com/secana/EnhancedSessionMode/blob/master/install_esm_fedora36.sh)
