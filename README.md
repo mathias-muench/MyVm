@@ -15,3 +15,16 @@ Create Vm with [New-My-Vm.ps1](./New-My-Vm.ps1) (based on [Hyper-V example setup
 Installing Fedora is still a manual task. Maybe I will create a kickstart automation for it.
 
 If you want to use Enhanced Session Mode for shared clipboard and drives, follow instructions and script in [secana/EnhancedSessionMode: Contains scripts to enable "Hyper-V Enhanced Session Mode" for Linux](https://github.com/secana/EnhancedSessionMode).
+
+    ssh-keygen -R 172.26.48.4
+    scp .\install_esm_fedora36.sh root@172.26.48.4:.
+    ssh root@172.26.48.4 "bash -upex install_esm_fedora36.sh"
+    Write-Output "dnf -y upgrade #" |  ssh root@172.26.48.4 "bash -upex"
+    Write-Output "reboot #" |  ssh root@172.26.48.4 "bash -upex"
+    Write-Output "dnf group install -y 'i3 desktop' #" |  ssh root@172.26.48.4 "bash -upex"
+    Write-Output "systemctl set-default graphical.target #" |  ssh root@172.26.48.4 "bash -upex"
+    ssh root@172.26.48.4 "bash -upex install_esm_fedora36.sh"
+    ssh root@172.26.48.4
+    Write-Output "echo '/usr/bin/xfce4-terminal' >startwm.sh #" |  ssh root@172.26.48.4 "bash -upex"
+    Write-Output "chmod a+x startwm.sh #" |  ssh root@172.26.48.4 "bash -upex"
+    Write-Output "tar -C ~mun5grb/ -x -f thinclient_drives/C\:/Users/mun5grb/mun5grb.tar #" |  ssh root@172.26.48.4 "bash -upex"

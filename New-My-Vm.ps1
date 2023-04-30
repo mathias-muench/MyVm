@@ -10,7 +10,7 @@ $vm | Set-VMProcessor -Count 4
 $vm | Set-VMMemory -DynamicMemoryEnabled $false -StartupBytes 8Gb
 
 # Add DVD drive, attach ISO, HDD, and set boot order
-$dvd = $vm | Add-VMDvdDrive -Path .\Fedora-Server-dvd-x86_64-36-1.5.iso -Passthru
+$dvd = $vm | Add-VMDvdDrive -Path $HOME\Fedora-Server-dvd-x86_64-36-1.5.iso -Passthru
 $hdd = $vm | Add-VMHardDiskDrive -Path $vhd.Path -Passthru
 $vm | Set-VMFirmware -BootOrder $dvd, $hdd
 
