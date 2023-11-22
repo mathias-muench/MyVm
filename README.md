@@ -16,7 +16,7 @@ Installing Fedora is still a manual task. Maybe I will create a kickstart automa
 
 If you want to use Enhanced Session Mode for shared clipboard and drives, follow instructions and script in [secana/EnhancedSessionMode: Contains scripts to enable "Hyper-V Enhanced Session Mode" for Linux](https://github.com/secana/EnhancedSessionMode).
 
-    tar -C ~mun5grb/ -c -f ~/thinclient_drives/C\:/Users/mun5grb/mun5grb.tar -X ~mun5grb/.tar-exclude --exclude-caches .
+    tar --checkpoint=10000 -C ~mun5grb/ -c -f ~/thinclient_drives/C\:/Users/mun5grb/mun5grb.tar -X ~mun5grb/.tar-exclude --exclude-caches .
 
     ssh-keygen -R 172.26.48.4
 
@@ -40,5 +40,5 @@ If you want to use Enhanced Session Mode for shared clipboard and drives, follow
 
     Write-Output "chmod a+x startwm.sh #" |  ssh root@172.26.48.4 "bash -upex"
 
-    Write-Output "tar -C ~mun5grb/ -x -f thinclient_drives/C\:/Users/mun5grb/mun5grb.tar #" |  ssh root@172.26.48.4 "bash -upex"
+    tar --checkpoint=10000 -C ~mun5grb/ -x -f thinclient_drives/C\:/Users/mun5grb/mun5grb.tar
 

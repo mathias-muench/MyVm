@@ -1,5 +1,5 @@
 ﻿# Create a virtual hard disk
-$vhd = New-VHD -SizeBytes 20Gb -Dynamic MyVm.vhdx
+$vhd = New-VHD -SizeBytes 50Gb -Dynamic MyVm.vhdx
 
 # Create a UEFI VM, secure boot disabled
 $vm = New-VM -Generation 2 -Name "MyVm" -Path .
@@ -10,7 +10,8 @@ $vm | Set-VMProcessor -Count 4
 $vm | Set-VMMemory -DynamicMemoryEnabled $false -StartupBytes 8Gb
 
 # Add DVD drive, attach ISO, HDD, and set boot order
-$dvd = $vm | Add-VMDvdDrive -Path $HOME\Fedora-Server-dvd-x86_64-36-1.5.iso -Passthru
+$dvd = $vm | Add-VMDvdDrive -Path $HOME\Fedora-Server-dvd-x86_64-38-1.6.iso -Passthru
+$vm | Add-VMDvdDrive -Path $HOME\kickstart.iso -Passthru
 $hdd = $vm | Add-VMHardDiskDrive -Path $vhd.Path -Passthru
 $vm | Set-VMFirmware -BootOrder $dvd, $hdd
 
