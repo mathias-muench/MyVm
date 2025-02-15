@@ -10,10 +10,10 @@ $vm | Set-VMProcessor -Count 4
 $vm | Set-VMMemory -DynamicMemoryEnabled $false -StartupBytes 8Gb
 
 # Add DVD drive, attach ISO, HDD, and set boot order
-$dvd = $vm | Add-VMDvdDrive -Path $HOME\Fedora-Server-dvd-x86_64-38-1.6.iso -Passthru
-$vm | Add-VMDvdDrive -Path $HOME\kickstart.iso -Passthru
+$dvd = $vm | Add-VMDvdDrive -Path $HOME\Fedora-Server-dvd-x86_64-40-1.14.iso -Passthru
 $hdd = $vm | Add-VMHardDiskDrive -Path $vhd.Path -Passthru
 $vm | Set-VMFirmware -BootOrder $dvd, $hdd
+$vm | Add-VMDvdDrive -Path $HOME\kickstart.iso -Passthru
 
 # Connect the network adapter - run Get-VMSwitch if you're not sure which name to use.
 #    There is a "Default switch" if you want a local NAT, but I prefer using a direct connection
