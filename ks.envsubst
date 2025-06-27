@@ -41,13 +41,13 @@ timesource --ntp-disable
 timezone Europe/Berlin --utc
 
 # Root password
-rootpw --iscrypted --allow-ssh $y$j9T$FF3QRp8.kgX/YAabe6ojQW1T$7/8OnLF834zJAzs9ESaLPkYcGirt2quQMBzRFB7CBh.
+rootpw --iscrypted --allow-ssh $$y$$j9T$$FF3QRp8.kgX/YAabe6ojQW1T$$7/8OnLF834zJAzs9ESaLPkYcGirt2quQMBzRFB7CBh.
 user --groups=wheel --name=mun5grb --gecos="Mathias Muench"
 
 %post --erroronfail
-echo 'tar --checkpoint=10000 -C ~mun5grb/ -c -f ~/thinclient_drives/C\:/Users/mun5grb/mun5grb.tar -X ~mun5grb/.tar-exclude --exclude-caches .' >/root/save.sh
+echo 'tar --checkpoint=10000 -C ~mun5grb/ -c -f ~/thinclient_drives/C\:/Users/${USERNAME}/mun5grb.tar -X ~mun5grb/.tar-exclude --exclude-caches .' >/root/save.sh
 passwd -ud mun5grb
-echo 'tar --checkpoint=10000 -C ~mun5grb/ -x -f thinclient_drives/C\:/Users/mun5grb/mun5grb.tar' -k >/root/home.sh
+echo 'tar --checkpoint=10000 -C ~mun5grb/ -x -f thinclient_drives/C\:/Users/${USERNAME}/mun5grb.tar' -k >/root/home.sh
 %end
 
 %post --erroronfail

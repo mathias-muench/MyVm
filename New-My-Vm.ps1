@@ -2,6 +2,12 @@
     [Parameter(Mandatory=$true)][string]$vmname
 )
 
+# Create kickstart ISO
+# scoop install cdrtools
+# scoop install envsubst
+envsubst.exe -i ks.envsubst -o ks.cfg
+mkisofs.exe -r -J -V ks -o "$vmname.iso" ks.cfg
+
 # Create a virtual hard disk
 $vhd = New-VHD -SizeBytes 50Gb -Dynamic "$vmname.vhdx"
 
