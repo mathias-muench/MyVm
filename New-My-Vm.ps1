@@ -1,10 +1,14 @@
 ﻿param (
-    [Parameter(Mandatory=$true)][string]$vmname
+    [Parameter(Mandatory=$true)][string]$vmname,
+    [Parameter(Mandatory=$true)][string]$vmuser,
+    [Parameter(Mandatory=$true)][string]$vmaddr
 )
 
 # Create kickstart ISO
 # scoop install cdrtools
 # scoop install envsubst
+$env:vmuser = "$vmuser"
+$env:vmaddr = "$vmaddr"
 envsubst.exe -i ks.envsubst -o ks.cfg
 mkisofs.exe -r -J -V ks -o "$vmname.iso" ks.cfg
 

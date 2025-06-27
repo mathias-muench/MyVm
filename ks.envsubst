@@ -10,7 +10,7 @@ keyboard --vckeymap=de-nodeadkeys --xlayouts='de (nodeadkeys)','us'
 lang en_US.UTF-8
 
 # Network information
-network  --bootproto=static --device=eth0 --gateway=172.26.48.1 --ip=172.26.48.4 --nameserver=1.1.1.1 --netmask=255.255.252.0 --ipv6=auto
+network  --bootproto=static --device=eth0 --gateway=172.26.48.1 --ip=${vmaddr} --nameserver=1.1.1.1 --netmask=255.255.252.0 --ipv6=auto
 
 # Use CDROM installation media
 cdrom
@@ -42,12 +42,12 @@ timezone Europe/Berlin --utc
 
 # Root password
 rootpw --iscrypted --allow-ssh $$y$$j9T$$FF3QRp8.kgX/YAabe6ojQW1T$$7/8OnLF834zJAzs9ESaLPkYcGirt2quQMBzRFB7CBh.
-user --groups=wheel --name=mun5grb --gecos="Mathias Muench"
+user --groups=wheel --name=${vmuser} --gecos="Mathias Muench"
 
 %post --erroronfail
-echo 'tar --checkpoint=10000 -C ~mun5grb/ -c -f ~/thinclient_drives/C\:/Users/${USERNAME}/mun5grb.tar -X ~mun5grb/.tar-exclude --exclude-caches .' >/root/save.sh
-passwd -ud mun5grb
-echo 'tar --checkpoint=10000 -C ~mun5grb/ -x -f thinclient_drives/C\:/Users/${USERNAME}/mun5grb.tar' -k >/root/home.sh
+echo 'tar --checkpoint=10000 -C ~${vmuser}/ -c -f ~/thinclient_drives/C\:/Users/${USERNAME}/${vmuser}.tar -X ~${vmuser}/.tar-exclude --exclude-caches .' >/root/save.sh
+passwd -ud ${vmuser}
+echo 'tar --checkpoint=10000 -C ~${vmuser}/ -x -f thinclient_drives/C\:/Users/${USERNAME}/${vmuser}.tar' -k >/root/home.sh
 %end
 
 %post --erroronfail
