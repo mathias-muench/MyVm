@@ -11,7 +11,7 @@ foreach($i in [System.Text.Encoding]::UTF8.GetBytes("$vmname")) {
 	$vmaddr = $vmaddr -bxor $i
 }
 $env:vmaddr = $vmaddr + 64
-envsubst.exe -i ks.envsubst -o ks.cfg
+envsubst.exe -i $PSScriptRoot\ks.envsubst -o ks.cfg
 mkisofs.exe -r -J -V ks -o "$vmname.iso" ks.cfg
 
 # Create a virtual hard disk
