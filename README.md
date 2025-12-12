@@ -15,6 +15,9 @@ Create Vm with [New-My-Vm.ps1 MyVm](./New-My-Vm.ps1) (based on [Hyper-V
 example setup for Fedora
 34](https://gist.github.com/PatrickLang/03dcda94a93b8b2960aa41c29ded057f)).
 
+    Start-Process pwsh.exe -ArgumentList "-Command & ..\MyVm\New-My-Net.ps1; Read-Host -Prompt Weiter" -Verb RunAs -Wait
+    Start-Process pwsh.exe -ArgumentList "-Command & ..\MyVm\New-My-Vm.ps1; Read-Host -Prompt Weiter" -Verb RunAs -Wait
+
 Kickstart automation
 
     scoop install cdrtools
