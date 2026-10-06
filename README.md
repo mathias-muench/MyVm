@@ -7,13 +7,13 @@ Enable Hyper-V on Windows
 Setup networking with [New-My-Net.ps1](./New-My-Net.ps1) (based on
 [how-to-create-stable-private-network-on-hyper-v.md](https://gist.github.com/johnathanmay/161a8b8ebd36e3f19aefab77418e345e)).
 
-Get `Fedora-Server-dvd-x86_64-36-1.5.iso` from [Download Fedora
+Get `Fedora-Server-dvd-x86_64-44-1.7.iso` from [Download Fedora
 Server](https://getfedora.org/en/server/download/) and put into "right"
 place.
 
-Create Vm with [New-My-Vm.ps1 MyVm](./New-My-Vm.ps1) (based on [Hyper-V
-example setup for Fedora
-34](https://gist.github.com/PatrickLang/03dcda94a93b8b2960aa41c29ded057f)).
+Create Vm with [New-My-Vm.ps1 MyVm](./New-My-Vm.ps1) (based on a
+[Hyper-V example
+setup](https://gist.github.com/PatrickLang/03dcda94a93b8b2960aa41c29ded057f)).
 
     Start-Process pwsh.exe -ArgumentList "-Command & ..\MyVm\New-My-Net.ps1; Read-Host -Prompt Weiter" -Verb RunAs -Wait
     Start-Process pwsh.exe -ArgumentList "-Command & ..\MyVm\New-My-Vm.ps1; Read-Host -Prompt Weiter" -Verb RunAs -Wait

@@ -55,6 +55,9 @@ dnf group install -y i3-desktop-environment
 systemctl set-default graphical.target
 echo '/usr/bin/i3-sensible-terminal' >/root/startwm.sh
 chmod a+x /root/startwm.sh
+dnf install -y policycoreutils-python-utils
+semanage fcontext -a -t bin_t '/root/startwm.sh'
+restorecon /root/startwm.sh
 %end
 
 %post --erroronfail
