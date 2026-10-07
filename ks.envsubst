@@ -15,11 +15,23 @@ network  --bootproto=static --device=eth0 --gateway=172.26.48.1 --ip=172.26.48.$
 # Use CDROM installation media
 cdrom
 
+# Network repos for packages missing from the DVD; cost above the DVD's 1000
+# default keeps the media preferred. Ids must not collide with the system
+# repos in /etc/anaconda.repos.d/ (fedora, updates, ...): anaconda
+# reconfigures same-named repos in place but never re-enables them, so they
+# would stay disabled for the whole install.
+repo --name=net-fedora --cost 2000 --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-$$releasever&arch=$$basearch
+repo --name=net-updates --cost 2000 --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f$$releasever&arch=$$basearch
+
 %packages
 @^custom-environment
+@^i3-desktop-environment
 @guest-agents
 @networkmanager-submodules
 @standard
+policycoreutils-python-utils
+xrdp
+xrdp-selinux
 
 %end
 
@@ -51,11 +63,9 @@ echo 'tar --checkpoint=10000 -C ~${vmuser}/ -x -f thinclient_drives/C\:/Users/${
 %end
 
 %post --erroronfail
-dnf group install -y i3-desktop-environment
 systemctl set-default graphical.target
 echo '/usr/bin/i3-sensible-terminal' >/root/startwm.sh
 chmod a+x /root/startwm.sh
-dnf install -y policycoreutils-python-utils
 semanage fcontext -a -t bin_t '/root/startwm.sh'
 restorecon /root/startwm.sh
 %end
@@ -70,14 +80,8 @@ if ! [ -f "/etc/modules-load.d/hv_sock.conf" ] || [ "$(cat /etc/modules-load.d/h
   echo "hv_sock" | sudo tee -a /etc/modules-load.d/hv_sock.conf > /dev/null
 fi
 
-# Install XRDP server
-sudo dnf install -y xrdp xrdp-selinux
-
 sudo firewall-cmd --permanent --add-port=3389/tcp
 sudo firewall-cmd --reload
-
-sudo chcon --type=bin_t /usr/sbin/xrdp
-sudo chcon --type=bin_t /usr/sbin/xrdp-sesman
 
 sudo systemctl enable xrdp
 sudo systemctl start xrdp

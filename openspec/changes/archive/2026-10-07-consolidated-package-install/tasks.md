@@ -8,5 +8,5 @@
 
 ## 2. Validate with a test install
 
-- [ ] 2.1 Create a throwaway VM with `New-My-Vm.ps1` and boot with `inst.ks=hd:LABEL=ks`; verify Anaconda resolves the package set (DVD + network repos) and the install completes unattended to shutdown
-- [ ] 2.2 On the installed system verify: `restorecon -nv /usr/sbin/xrdp /usr/sbin/xrdp-sesman` reports nothing to relabel, `ps -eZ | grep xrdp` shows `unconfined_service_t`, i3 graphical session and Enhanced Session Mode work; delete the throwaway VM afterwards
+- [x] 2.1 Create a throwaway VM with `New-My-Vm.ps1` and boot with `inst.ks=hd:LABEL=ks`; verify Anaconda resolves the package set (DVD + network repos) and the install completes unattended to shutdown
+- [x] 2.2 On the installed system verify: `restorecon -nv /usr/sbin/xrdp /usr/sbin/xrdp-sesman` reports nothing to relabel, `ps -eZ | grep xrdp` shows `unconfined_service_t`, i3 graphical session and Enhanced Session Mode work; delete the throwaway VM afterwards
